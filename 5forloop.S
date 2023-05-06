@@ -3,6 +3,8 @@ loopadd:
     stp X29, X30, [sp, #-32]!
     stp x0, x1, [sp, #16] // store x0 address ptr and x1 length to stack
     ldr x0, [sp, #24] // 0x24 是长度的参数栈地址
+    cmp x1, #0
+    beq .exit
     .loop:
     bl printint
     ldr x0, [sp, #24] // call完 printint之后 x0会变更，需要回复栈上的值
